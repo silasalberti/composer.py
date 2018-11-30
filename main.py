@@ -13,4 +13,4 @@ for i in range(5):
     melody = righthand.make_melody(harmonies)
 
     key = random.choice(range(60,72))
-    musescore.make_piece(melody, accompaniment, name=f"piece{i}")
+    musescore.make_piece(melody, accompaniment, name=f"piece{i}", key=key)

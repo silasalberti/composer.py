@@ -92,6 +92,8 @@ file_bottom = '''
 
 import random
 
+from composer import keys
+
 def make_beat(length, chord):
     notes = ""
     for tone in chord:
@@ -118,8 +120,17 @@ def make_beat(length, chord):
 
     return beat
 
-def make_measure(measure, number):
-    beats = ""
+def make_measure(measure, number, set_key=False):
+    if set_key:
+        beats = f"""
+            <KeySig>
+            <accidental>
+                {keys[BASE_NOTE-60]}
+            </accidental>
+            </KeySig>
+        """
+    else:
+        beats = ""
 
     for beat in measure:
         beats += make_beat(*beat)
@@ -131,8 +142,13 @@ def make_measure(measure, number):
 
 def make_staff(voice, id):
     text = f'<Staff id="{id}">'
+    first = True
     for number, chord in enumerate(voice):
-        measure = make_measure(chord, number+1)
+        if first:
+            measure = make_measure(chord, number+1, set_key=True)
+            first = False
+        else:
+            measure = make_measure(chord, number+1)
         text += measure
     text += f'</Staff>'
 

@@ -45,6 +45,23 @@ chords_minor = {
     "V7" : ("P5", DOMINANT_7TH)
 }
 
+# Keys: base notes 0 = c, 1 = c#, ..., 11 = h
+# Values: num of #s or bs 3 = 3#, 0 = no #/b, -2 = -2b
+keys = {
+    0 : 0,
+    1 : -5,
+    2 : 2,
+    3 : -3,
+    4 : 4,
+    5 : -1,
+    6 : 6,
+    7 : 1,
+    8 : -4,
+    9 : 3,
+    10 : -2,
+    11 : 5
+}
+
 # Takes ("M6", MINOR) or ("P5", MAJOR)
 # Retunrs (9, 0, 4) or (5, 9, 0)
 def make_chord(chord):
